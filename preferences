@@ -259,12 +259,12 @@ gui.column.hidden: %Cus:mpls.label:0:R,%Cus:eth.src_resolved:0:R,%Cus:dhcp.hw.ma
 gui.column.format: 
 	"Time", "%t",
 	"No.", "%m",
-	"Δt", "%Tt",
+	"Δtd", "%Gt",
 	"Cum Bytes", "%B",
 	"MPLS Label", "%Cus:mpls.label:0:R",
 	"Length", "%L",
 	"Protocol", "%p",
-	"DSCP", "%Cus:ip.dsfield:0:R",
+	"DSCP", "%Cus:ip.dsfield:0:U",
 	"TCP🏁", "%Cus:tcp.flags.str:0:R",
 	"TCP WS", "%Cus:tcp.window_size_value:0:R",
 	"TCP SL", "%Cus:tcp.len:0:R",
@@ -450,7 +450,7 @@ gui.show_selected_packet.enabled: TRUE
 
 # Resolve TCP/UDP ports into service names
 # TRUE or FALSE (case-insensitive)
-#nameres.transport_name: FALSE
+nameres.transport_name: TRUE
 
 # Resolve IPv4, IPv6, and IPX addresses into host names. The next set of check boxes determines how name resolution should be performed. If no other options are checked name resolution is made from Wireshark's host file and capture file name resolution blocks.
 # TRUE or FALSE (case-insensitive)
@@ -478,7 +478,7 @@ gui.show_selected_packet.enabled: TRUE
 
 # Resolve VLAN IDs to network names from the preferences "vlans" file. Format of the file is: "ID<Tab>Name". One line per VLAN, e.g.: 1 Management
 # TRUE or FALSE (case-insensitive)
-#nameres.vlan_name: FALSE
+nameres.vlan_name: TRUE
 
 # Resolve SS7 Point Codes to node names from the profiles "ss7pcs" file. Format of the file is: "Network_Indicator<Dash>PC_Decimal<Tab>Name". One line per Point Code, e.g.: 2-1234 MyPointCode1
 # TRUE or FALSE (case-insensitive)
@@ -486,7 +486,7 @@ gui.show_selected_packet.enabled: TRUE
 
 # Resolve Object IDs to object names from the MIB and PIB modules defined below. You must restart Wireshark for this change to take effect
 # TRUE or FALSE (case-insensitive)
-#nameres.load_smi_modules: FALSE
+nameres.load_smi_modules: TRUE
 
 # While loading MIB or PIB modules errors may be detected, which are reported. Some errors can be ignored. If unsure, set to false.
 # TRUE or FALSE (case-insensitive)

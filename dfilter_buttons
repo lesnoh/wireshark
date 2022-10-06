@@ -8,3 +8,6 @@
 "TRUE","DHCP NAK","dhcp.option.dhcp == 6",""
 "TRUE","ZeroWin","tcp.analysis.zero_window",""
 "TRUE","DUP ACK","tcp.analysis.duplicate_ack",""
+"TRUE","TCP Pay>1460","tcp.len > 1460",""
+"TRUE","SQL TRANSUM","tds && transum",""
+"TRUE","ARP","arp",""

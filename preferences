@@ -252,7 +252,7 @@ gui.interfaces_hidden_types: 8
 
 # Packet list hidden columns
 # List all columns to hide in the packet list.
-gui.column.hidden: %Cus:mpls.label:0:R,%Cus:eth.src_resolved:0:R,%Cus:dhcp.hw.mac_addr:0:R,%Cus:transum.st:0:R,%Cus:ip.dsfield.ecn:0:R,%Cus:tcp.flags:0:R,%Cus:eth.src:0:R,%Cus:kerberos.salt:0:R,%Cus:eth.dst_resolved:0:R,%Cus:ip.dst:0:R,%Cus:udp.dstport:0:R,%Cus:tcp.dstport:0:R,%Cus:isakmp.mjver:0:R,%Cus:esp.sequence:0:R,%a,%Cus:ipv6.hlim:0:R,%Cus:ssl.handshake.extensions_server_name:0:R,%Cus:data:0:R,%Cus:data.data:0:R,%Cus:data.text:0:R,%Cus:tcp.srcport:0:R,%Cus:ssl.handshake.extensions_server_name:0:R
+gui.column.hidden: %Cus:mpls.label:0:R,%Cus:ip.dsfield:0:U,%Cus:eth.src_resolved:0:R,%Cus:dhcp.hw.mac_addr:0:R,%Cus:transum.st:0:R,%Cus:tcp.flags:0:R,%Cus:eth.src:0:R,%Cus:kerberos.salt:0:R,%Cus:eth.dst_resolved:0:R,%Cus:ip.dst:0:R,%Cus:udp.dstport:0:R,%Cus:tcp.dstport:0:R,%Cus:isakmp.mjver:0:R,%Cus:esp.sequence:0:R,%a,%Cus:ipv6.hlim:0:R,%Cus:ssl.handshake.extensions_server_name:0:R,%Cus:data:0:R,%Cus:data.data:0:R,%Cus:data.text:0:R,%Cus:tcp.srcport:0:R,%Cus:ssl.handshake.extensions_server_name:0:R
 
 # Packet list column format
 # Each pair of strings consists of a column title and its format
@@ -264,7 +264,8 @@ gui.column.format:
 	"MPLS Label", "%Cus:mpls.label:0:R",
 	"Length", "%L",
 	"Protocol", "%p",
-	"DSCP", "%Cus:ip.dsfield:0:U",
+	"DSCP Hex", "%Cus:ip.dsfield:0:U",
+	"DSCP", "%f",
 	"TCP🏁", "%Cus:tcp.flags.str:0:R",
 	"TCP WS", "%Cus:tcp.window_size_value:0:R",
 	"TCP SL", "%Cus:tcp.len:0:R",
@@ -276,7 +277,6 @@ gui.column.format:
 	"SQL Service Time", "%Cus:transum.st:0:R",
 	"IP.ID", "%Cus:ip.id:0:R",
 	"Info", "%i",
-	"DSCP ECN", "%Cus:ip.dsfield.ecn:0:R",
 	"Flags", "%Cus:tcp.flags:0:R",
 	"Eth SA", "%Cus:eth.src:0:R",
 	"Kerberos.salt", "%Cus:kerberos.salt:0:R",

@@ -4921,7 +4921,7 @@ http.desegment_headers: FALSE
 
 # Whether subdissector can request TCP streams to be reassembled
 # TRUE or FALSE (case-insensitive)
-tcp.desegment_tcp_streams: FALSE
+#tcp.desegment_tcp_streams: TRUE
 
 # Whether out-of-order segments should be buffered and reordered before passing it to a subdissector. To use this option you must also enable "Allow subdissector to reassemble TCP streams".
 # TRUE or FALSE (case-insensitive)

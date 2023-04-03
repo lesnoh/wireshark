@@ -258,6 +258,7 @@ gui.column.hidden: %Cus:mpls.label:0:R,%Cus:ip.dsfield:0:U,%Cus:eth.src_resolved
 # Each pair of strings consists of a column title and its format
 gui.column.format: 
 	"Time", "%t",
+	"Rule", "%Cus:frame.coloring_rule.name:0:R",
 	"No.", "%m",
 	"Δtd", "%Gt",
 	"Cum Bytes", "%B",
@@ -289,7 +290,6 @@ gui.column.format:
 	"TCP_Destination Port", "%Cus:tcp.dstport:0:R",
 	"IKE Version", "%Cus:isakmp.mjver:0:R",
 	"ESP Sequence", "%Cus:esp.sequence:0:R",
-	"Rule", "%Cus:frame.coloring_rule.name:0:R",
 	"Severity", "%a",
 	"Hop limit", "%Cus:ipv6.hlim:0:R",
 	"Server Name", "%Cus:ssl.handshake.extensions_server_name:0:R",

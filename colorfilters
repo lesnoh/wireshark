@@ -9,7 +9,6 @@
 @IPv6 Reduced MSS@tcp.options.mss_val < 1440 and ipv6@[65535,0,0][65535,65535,65535]
 @Heartbleed Exploit@ssl.heartbeat_message.payload_length.invalid@[65535,0,0][65535,65535,65535]
 @TLS old version@ssl.handshake.version < 0x0303@[65535,0,0][65535,65535,65535]
-@TLS Random Time (non browser)@(ssl.handshake.random_time > "Jan  1, 2020 00:00:00.000000000" or ssl.handshake.random_time < "Apr  1, 2017 00:00:00.000000000" ) and tcp.port ==443@[65535,65535,0][0,0,0]
 @IP Fragment Errors@ip.fragment.error || ip.fragment.overlap.conflict || ip.fragment.overlap@[65535,11051,0][65535,65535,65535]
 @IPv4 with Evil bit in IP Header@ip.flags == 0x04@[65535,65535,0][0,0,0]
 @IPv4 ID Zero@ip.id == 0@[65535,65535,65535][0,0,0]

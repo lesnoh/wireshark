@@ -4,7 +4,7 @@
 "TRUE","SNI","(tls.handshake.extension.type == 0) && (tls.handshake.extensions_server_name_len != 0)","TLS SNI Option vorhanden"
 "TRUE","TCP Retransmission","tcp.analysis.retransmission or tcp.analysis.fast_retransmission",""
 "TRUE","Duplicate IP","arp.duplicate-address-detected","arp.duplicate-address-detected"
-"TRUE","DNS ohne Antwort","dns && (dns.flags.response == 0) && ! dns.response_in",""
+"TRUE","DNS without response","dns && (dns.flags.response == 0) && ! dns.response_in",""
 "TRUE","DHCP NAK","dhcp.option.dhcp == 6",""
 "TRUE","ZeroWin","tcp.analysis.zero_window",""
 "TRUE","DUP ACK","tcp.analysis.duplicate_ack",""

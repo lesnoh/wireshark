@@ -8,6 +8,6 @@ git clone https://github.com/lesnoh/wireshark.git myCustomProfile
 
 _Linux Setup_
 
-cd .config/wireshark/profiles
+cd ~/.config/wireshark/profiles
 
 git clone https://github.com/lesnoh/wireshark.git myCustomProfile

@@ -51,7 +51,7 @@
 @TCP Reset@tcp.flags.reset==1@[0,65535,0][0,0,0]
 @TCP FIN Teardown@(tcp.flags.fin==1)@[0,65535,0][0,0,0]
 @HTTP Big FIle@http.content_length >= 20971520@[65535,65535,0][0,0,0]
-@HTTP Uncommon User Agent@http.request && (not http.user_agent matches "(Chrome|Mozilla|Gecko|MSIE|Safari|AppleWebKit|Android|Opera)")@[65535,65535,0][0,0,0]
+@HTTP Uncommon User Agent@http.request && (not http.user_agent matches "(Chrome|Chromium|Mozilla|Gecko|Safari|AppleWebKit|Android|Opera)")@[65535,65535,0][0,0,0]
 @Slow HTTP@http.time > 5 and http.file_data > 32000@[65535,65535,0][0,0,0]
 @TLS Fatal Alert@ssl.alert_message and ssl.alert_message.level == 2@[65535,0,0][65535,65535,65535]
 @TLS Server is not sending full certificate chain@(ssl and (ssl.handshake.certificates_length == ssl.handshake.certificate_length)) && (ssl.handshake.type == 11)@[65535,0,0][65535,65535,65535]

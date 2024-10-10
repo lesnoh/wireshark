@@ -12,3 +12,5 @@
 "TRUE","TCP ZeroWin","tcp.analysis.zero_window",""
 "TRUE","TCP DUP ACK","tcp.analysis.duplicate_ack",""
 "TRUE","TLS SNI","(tls.handshake.extension.type == 0) && (tls.handshake.extensions_server_name_len != 0)",""
+"TRUE","SMBv3","smb2 && smb2.cmd == 0x11",""
+"TRUE","SMBv2","smb2",""

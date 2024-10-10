@@ -1,4 +1,4 @@
-# Configuration file for Wireshark 4.0.3.
+# Configuration file for Wireshark 4.2.6.
 #
 # This file is regenerated each time preferences are saved within
 # Wireshark. Making manual changes should be safe, however.
@@ -31,11 +31,15 @@
 
 # Directory to start in when opening File Open dialog.
 # A path to a directory
-#gui.fileopen.dir: 
+#gui.fileopen.dir: C:\Users\MichaelHonsel\OneDrive - Logata Digital Solutions GmbH\Dokumente
 
 # The preview timeout in the File Open dialog
 # A decimal number
 #gui.fileopen.preview: 3
+
+# Program path or command line to launch with SSLKEYLOGFILE
+# A string
+#gui.tlskeylog_command: 
 
 # Ask to save unsaved capture files?
 # TRUE or FALSE (case-insensitive)
@@ -79,6 +83,10 @@
 # A decimal number
 #gui.update.interval: 86400
 
+# How long to wait (in milliseconds) before processing computationally intensive user input. If you type quickly, consider lowering the value for a 'snappier' experience. If you type slowly, consider increasing the value to avoid performance issues. This is currently used to delay searches in View -> Internals -> Supported Protocols and Preferences -> Advanced menu.
+# A decimal number
+#gui.debounce.timer: 400
+
 # Custom window title to be appended to the existing title
 # %F = file path of the capture file
 # %P = profile name
@@ -112,7 +120,7 @@
 # A decimal number
 #gui.max_tree_items: 1000000
 
-# The maximum depth of the dissection tree (Increase with caution)
+# The maximum depth for dissection tree and protocol layer checks. (Increase with caution)
 # A decimal number
 #gui.max_tree_depth: 500
 
@@ -145,6 +153,10 @@
 # TRUE or FALSE (case-insensitive)
 #gui.packet_list_is_sortable: TRUE
 
+# Maximum number of rows that can be sorted by columns that require dissection. Increasing this increases memory consumption by caching column text
+# A decimal number
+#gui.packet_list_cached_rows_max: 10000
+
 # Show all interfaces, including interfaces marked as hidden
 # TRUE or FALSE (case-insensitive)
 #gui.interfaces_show_hidden: FALSE
@@ -171,6 +183,10 @@ gui.interfaces_hidden_types: 8
 # Enables automatic updates for IO Graph
 # TRUE or FALSE (case-insensitive)
 #gui.io_graph_automatic_update: TRUE
+
+# Enables the legend of IO Graph
+# TRUE or FALSE (case-insensitive)
+#gui.io_graph_enable_legend: TRUE
 
 # Show the byte view in the packet details dialog
 # TRUE or FALSE (case-insensitive)
@@ -274,12 +290,12 @@ gui.column.format:
 	"Ethernet Source", "%Cus:eth.src_resolved:0:R",
 	"Client MAC address", "%Cus:dhcp.hw.mac_addr:0:R",
 	"Destination", "%d",
+	"TTL", "%Cus:ip.ttl:0:R",
 	"SNI", "%Cus:tls.handshake.extensions_server_name:0:R",
 	"IP.ID", "%Cus:ip.id:0:R",
 	"Info", "%i",
 	"Eth SA", "%Cus:eth.src:0:R",
 	"Eth DA", "%Cus:eth.dst_resolved:0:R",
-	"TTL", "%Cus:ip.ttl:0:R",
 	"Don't fragment", "%Cus:ip.flags.df:0:R",
 	"More fragments", "%Cus:ip.flags.mf:0:R",
 	"Fragment Destination", "%Cus:ip.dst:0:R",
@@ -290,7 +306,7 @@ gui.column.format:
 
 # Font name for packet list, protocol tree, and hex dump panes. (Qt)
 # A string
-gui.qt.font_name: Liberation Mono,9,-1,5,50,0,0,0,0,0
+gui.qt.font_name: Consolas,10,-1,5,50,0,0,0,0,0
 
 ####### User Interface: Layout ########
 
@@ -349,7 +365,7 @@ gui.show_selected_packet.enabled: TRUE
 
 # Interface link-layer header types (Ex: en0(1),en1(143),...)
 # A string
-#capture.devices_linktypes: 
+capture.devices_linktypes: \Device\NPF_{A8A021E7-017F-4E9C-8274-7850C04B8570}(1),\Device\NPF_{AC72AC20-B3D5-4568-9DBE-43B8F737A6B9}(1),\Device\NPF_{165A6E8E-A547-40FA-9EE6-0DF1FE520025}(1),\Device\NPF_{919A125E-CF12-4F3F-8C9B-A206000B1547}(1),\Device\NPF_{361FC124-EE48-4164-A30E-553253138C7C}(1),\Device\NPF_{53AA5072-3249-4CD9-BD57-403514DBF921}(1),\Device\NPF_{2DE6F5E5-758A-4209-8023-318866899780}(1),\Device\NPF_{B9FDD489-373B-48A5-837B-B5EDD139BD12}(1),\Device\NPF_{65A520A8-32A9-4108-B543-B6F75D6B4647}(1),\Device\NPF_{08383060-21C0-4CD3-A474-7424E2E52857}(1),\Device\NPF_{CAD41930-5296-442E-B9B0-28B41FE247CC}(1),\Device\NPF_Loopback(0),\Device\NPF_{D9C2580E-A10F-4B7E-A050-31349EF30BEF}(1),\Device\NPF_{792D6FB8-0C9D-4360-AAA4-67B773E98EAD}(1),\Device\NPF_{7E36ED38-E0FA-480E-BC03-417538AADDE5}(1),\Device\NPF_{7350926C-07CA-4A49-B9A9-EF05FD571E7E}(1),\Device\NPF_{37F7C034-D367-436D-ABFF-CFB0929C9F31}(1),etwdump(290)
 
 # Interface descriptions (Ex: eth0(eth0 descr),eth1(eth1 descr),...)
 # A string
@@ -365,15 +381,15 @@ gui.show_selected_packet.enabled: TRUE
 
 # Interface buffer size (Ex: en0(1),en1(143),...)
 # A string
-#capture.devices_buffersize: 
+capture.devices_buffersize: \Device\NPF_{A8A021E7-017F-4E9C-8274-7850C04B8570}(2),\Device\NPF_{AC72AC20-B3D5-4568-9DBE-43B8F737A6B9}(2),\Device\NPF_{165A6E8E-A547-40FA-9EE6-0DF1FE520025}(2),\Device\NPF_{919A125E-CF12-4F3F-8C9B-A206000B1547}(2),\Device\NPF_{361FC124-EE48-4164-A30E-553253138C7C}(2),\Device\NPF_{53AA5072-3249-4CD9-BD57-403514DBF921}(2),\Device\NPF_{2DE6F5E5-758A-4209-8023-318866899780}(2),\Device\NPF_{B9FDD489-373B-48A5-837B-B5EDD139BD12}(2),\Device\NPF_{65A520A8-32A9-4108-B543-B6F75D6B4647}(2),\Device\NPF_{08383060-21C0-4CD3-A474-7424E2E52857}(2),\Device\NPF_{CAD41930-5296-442E-B9B0-28B41FE247CC}(2),\Device\NPF_Loopback(2),\Device\NPF_{D9C2580E-A10F-4B7E-A050-31349EF30BEF}(2),\Device\NPF_{792D6FB8-0C9D-4360-AAA4-67B773E98EAD}(2),\Device\NPF_{7E36ED38-E0FA-480E-BC03-417538AADDE5}(2),\Device\NPF_{7350926C-07CA-4A49-B9A9-EF05FD571E7E}(2),\Device\NPF_{37F7C034-D367-436D-ABFF-CFB0929C9F31}(2),etwdump(2)
 
 # Interface snap length (Ex: en0(65535),en1(1430),...)
 # A string
-#capture.devices_snaplen: 
+capture.devices_snaplen: \Device\NPF_{A8A021E7-017F-4E9C-8274-7850C04B8570}:0(262144),\Device\NPF_{AC72AC20-B3D5-4568-9DBE-43B8F737A6B9}:0(262144),\Device\NPF_{165A6E8E-A547-40FA-9EE6-0DF1FE520025}:0(262144),\Device\NPF_{919A125E-CF12-4F3F-8C9B-A206000B1547}:0(262144),\Device\NPF_{361FC124-EE48-4164-A30E-553253138C7C}:0(262144),\Device\NPF_{53AA5072-3249-4CD9-BD57-403514DBF921}:0(262144),\Device\NPF_{2DE6F5E5-758A-4209-8023-318866899780}:0(262144),\Device\NPF_{B9FDD489-373B-48A5-837B-B5EDD139BD12}:0(262144),\Device\NPF_{65A520A8-32A9-4108-B543-B6F75D6B4647}:0(262144),\Device\NPF_{08383060-21C0-4CD3-A474-7424E2E52857}:0(262144),\Device\NPF_{CAD41930-5296-442E-B9B0-28B41FE247CC}:0(262144),\Device\NPF_Loopback:0(262144),\Device\NPF_{D9C2580E-A10F-4B7E-A050-31349EF30BEF}:0(262144),\Device\NPF_{792D6FB8-0C9D-4360-AAA4-67B773E98EAD}:0(262144),\Device\NPF_{7E36ED38-E0FA-480E-BC03-417538AADDE5}:0(262144),\Device\NPF_{7350926C-07CA-4A49-B9A9-EF05FD571E7E}:0(262144),\Device\NPF_{37F7C034-D367-436D-ABFF-CFB0929C9F31}:0(262144),etwdump:0(262144)
 
 # Interface promiscuous mode (Ex: en0(0),en1(1),...)
 # A string
-#capture.devices_pmode: 
+capture.devices_pmode: \Device\NPF_{A8A021E7-017F-4E9C-8274-7850C04B8570}(1),\Device\NPF_{AC72AC20-B3D5-4568-9DBE-43B8F737A6B9}(1),\Device\NPF_{165A6E8E-A547-40FA-9EE6-0DF1FE520025}(1),\Device\NPF_{919A125E-CF12-4F3F-8C9B-A206000B1547}(1),\Device\NPF_{361FC124-EE48-4164-A30E-553253138C7C}(1),\Device\NPF_{53AA5072-3249-4CD9-BD57-403514DBF921}(1),\Device\NPF_{2DE6F5E5-758A-4209-8023-318866899780}(1),\Device\NPF_{B9FDD489-373B-48A5-837B-B5EDD139BD12}(1),\Device\NPF_{65A520A8-32A9-4108-B543-B6F75D6B4647}(1),\Device\NPF_{08383060-21C0-4CD3-A474-7424E2E52857}(1),\Device\NPF_{CAD41930-5296-442E-B9B0-28B41FE247CC}(1),\Device\NPF_Loopback(1),\Device\NPF_{D9C2580E-A10F-4B7E-A050-31349EF30BEF}(1),\Device\NPF_{792D6FB8-0C9D-4360-AAA4-67B773E98EAD}(1),\Device\NPF_{7E36ED38-E0FA-480E-BC03-417538AADDE5}(1),\Device\NPF_{7350926C-07CA-4A49-B9A9-EF05FD571E7E}(1),\Device\NPF_{37F7C034-D367-436D-ABFF-CFB0929C9F31}(1),etwdump(1)
 
 # Capture in promiscuous mode?
 # TRUE or FALSE (case-insensitive)
@@ -391,6 +407,10 @@ gui.show_selected_packet.enabled: TRUE
 # TRUE or FALSE (case-insensitive)
 #capture.real_time_update: TRUE
 
+# Capture update interval in ms
+# A decimal number
+#capture.update_interval: 100
+
 # Don't automatically load capture interfaces on startup
 # TRUE or FALSE (case-insensitive)
 #capture.no_interface_load: FALSE
@@ -398,10 +418,6 @@ gui.show_selected_packet.enabled: TRUE
 # Disable external capture modules (extcap)
 # TRUE or FALSE (case-insensitive)
 #capture.no_extcap: FALSE
-
-# Scroll packet list during capture?
-# TRUE or FALSE (case-insensitive)
-#capture.auto_scroll: TRUE
 
 # Show capture information dialog while capturing?
 # TRUE or FALSE (case-insensitive)
@@ -429,237 +445,25 @@ gui.show_selected_packet.enabled: TRUE
 # TRUE or FALSE (case-insensitive)
 #extcap.gui_save_on_start: TRUE
 
-# Remote SSH server address
+# etl file
 # A string
-#extcap.sshdump.remotehost: 
+#extcap.etwdump.etlfile: 
 
-# Remote SSH server port
+# filter parameters
 # A string
-#extcap.sshdump.remoteport: 
+#extcap.etwdump.params: 
 
-# Remote SSH server username
+# Should undecidable events be included
 # A string
-#extcap.sshdump.remoteusername: 
-
-# Remote SSH server password
-# Password (never stored on disk)
-#extcap.sshdump.remotepassword: 
-
-# Path to SSH private key
-# A string
-#extcap.sshdump.sshkey: 
-
-# SSH key passphrase
-# Password (never stored on disk)
-#extcap.sshdump.sshkeypassphrase: 
-
-# ProxyCommand
-# A string
-#extcap.sshdump.proxycommand: 
-
-# Remote interface
-# A string
-#extcap.sshdump.remoteinterface: 
-
-# Remote capture command selection
-# A string
-#extcap.sshdump.remotecapturecommandselect: 
-
-# Remote capture command
-# A string
-#extcap.sshdump.remotecapturecommand: 
-
-# Use sudo on the remote machine
-# A string
-#extcap.sshdump.remotesudo: 
-
-# No promiscuous mode
-# A string
-#extcap.sshdump.remotenoprom: 
-
-# Remote capture filter
-# A string
-#extcap.sshdump.remotefilter: not ((host fe80::e858:b268:77c5:c1b8 or host fe80::1e06:f76b:669f:dbda or host 192.168.56.102 or host 10.0.2.15) and port 22)
-
-# Packets to capture
-# A string
-#extcap.sshdump.remotecount: 0
+#extcap.etwdump.iue: false
 
 # Set the log level
 # A string
-#extcap.sshdump.loglevel: 
+#extcap.etwdump.loglevel: 
 
 # Use a file for logging
 # A string
-#extcap.sshdump.logfile: 
-
-# Max bytes in a packet
-# A string
-#extcap.randpkt.maxbytes: 5000
-
-# Number of packets
-# A string
-#extcap.randpkt.count: 1000
-
-# Packet delay (ms)
-# A string
-#extcap.randpkt.delay: 0
-
-# Random type
-# A string
-#extcap.randpkt.randomtype: false
-
-# All random packets
-# A string
-#extcap.randpkt.allrandom: false
-
-# Type of packet
-# A string
-#extcap.randpkt.type: 
-
-# Set the log level
-# A string
-#extcap.randpkt.loglevel: 
-
-# Use a file for logging
-# A string
-#extcap.randpkt.logfile: 
-
-# Starting position
-# A string
-#extcap.sdjournal.startfrom: 
-
-# Set the log level
-# A string
-#extcap.sdjournal.loglevel: 
-
-# Use a file for logging
-# A string
-#extcap.sdjournal.logfile: 
-
-# Interface index
-# A string
-#extcap.dpauxmon.interface_id: 0
-
-# Set the log level
-# A string
-#extcap.dpauxmon.loglevel: 
-
-# Use a file for logging
-# A string
-#extcap.dpauxmon.logfile: 
-
-# Listen port
-# A string
-#extcap.udpdump.port: 5555
-
-# Payload type
-# A string
-#extcap.udpdump.payload: data
-
-# Set the log level
-# A string
-#extcap.udpdump.loglevel: 
-
-# Use a file for logging
-# A string
-#extcap.udpdump.logfile: 
-
-# Remote SSH server address
-# A string
-#extcap.wifidump.remotehost: 
-
-# Remote SSH server port
-# A string
-#extcap.wifidump.remoteport: 
-
-# Remote SSH server username
-# A string
-#extcap.wifidump.remoteusername: 
-
-# Remote SSH server password
-# Password (never stored on disk)
-#extcap.wifidump.remotepassword: 
-
-# Path to SSH private key
-# A string
-#extcap.wifidump.sshkey: 
-
-# SSH key passphrase
-# Password (never stored on disk)
-#extcap.wifidump.sshkeypassphrase: 
-
-# Remote interface
-# A string
-#extcap.wifidump.remoteinterface: auto
-
-# Remote channel
-# A string
-#extcap.wifidump.remotechannelfrequency: 
-
-# Remote channel width
-# A string
-#extcap.wifidump.remotechannelwidth: 
-
-# Remote capture filter
-# A string
-#extcap.wifidump.remotefilter: 
-
-# Frames to capture
-# A string
-#extcap.wifidump.remotecount: 
-
-# Set the log level
-# A string
-#extcap.wifidump.loglevel: 
-
-# Use a file for logging
-# A string
-#extcap.wifidump.logfile: 
-
-# Remote SSH server address
-# A string
-#extcap.ciscodump.remotehost: 
-
-# Remote SSH server port
-# A string
-#extcap.ciscodump.remoteport: 22
-
-# Remote SSH server username
-# A string
-#extcap.ciscodump.remoteusername: michon
-
-# Remote SSH server password
-# Password (never stored on disk)
-#extcap.ciscodump.remotepassword: 
-
-# Path to SSH private key
-# A string
-#extcap.ciscodump.sshkey: 
-
-# ProxyCommand
-# A string
-#extcap.ciscodump.proxycommand: 
-
-# Remote interface
-# A string
-#extcap.ciscodump.remoteinterface: 
-
-# Remote capture filter
-# A string
-#extcap.ciscodump.remotefilter: deny tcp host fe80::e858:b268:77c5:c1b8 any eq 22, deny tcp any eq 22 host fe80::e858:b268:77c5:c1b8, deny tcp host fe80::1e06:f76b:669f:dbda any eq 22, deny tcp any eq 22 host fe80::1e06:f76b:669f:dbda, deny tcp host 192.168.56.102 any eq 22, deny tcp any eq 22 host 192.168.56.102, deny tcp host 10.0.2.15 any eq 22, deny tcp any eq 22 host 10.0.2.15, permit ip any any
-
-# Packets to capture
-# A string
-#extcap.ciscodump.remotecount: 
-
-# Set the log level
-# A string
-#extcap.ciscodump.loglevel: 
-
-# Use a file for logging
-# A string
-#extcap.ciscodump.logfile: 
+#extcap.etwdump.logfile: 
 
 ####### Name Resolution ########
 
@@ -691,10 +495,6 @@ nameres.transport_name: TRUE
 # A decimal number
 #nameres.name_resolve_concurrency: 500
 
-# By default "hosts" files will be loaded from multiple sources. Checking this box only loads the "hosts" in the current profile.
-# TRUE or FALSE (case-insensitive)
-#nameres.hosts_file_handling: FALSE
-
 # Resolve VLAN IDs to network names from the preferences "vlans" file. Format of the file is: "ID<Tab>Name". One line per VLAN, e.g.: 1 Management
 # TRUE or FALSE (case-insensitive)
 nameres.vlan_name: TRUE
@@ -710,6 +510,10 @@ nameres.load_smi_modules: TRUE
 # While loading MIB or PIB modules errors may be detected, which are reported. Some errors can be ignored. If unsure, set to false.
 # TRUE or FALSE (case-insensitive)
 nameres.suppress_smi_errors: TRUE
+
+# Lookup geolocation information for IPv4 and IPv6 addresses with configured MaxMind databases
+# TRUE or FALSE (case-insensitive)
+#nameres.maxmind_geoip: TRUE
 
 ####### Protocols ########
 
@@ -728,6 +532,14 @@ nameres.suppress_smi_errors: TRUE
 # Protocols may use things like VLAN ID or interface ID to narrow the potential for duplicate conversations. Currently ICMP and ICMPv6 use this preference to add VLAN ID to conversation tracking, and IPv4 uses this preference to take VLAN ID into account during reassembly
 # TRUE or FALSE (case-insensitive)
 #protocols.strict_conversation_tracking_heuristics: FALSE
+
+# Ignore frames that are exact duplicates of any previous frame.
+# TRUE or FALSE (case-insensitive)
+#protocols.ignore_dup_frames: FALSE
+
+# If "Ignore duplicate frames" is set, this setting sets the maximum number of cache entries to maintain. A 0 means no limit.
+# A decimal number
+#protocols.ignore_dup_frames_cache_entries: 10000
 
 # Use a registered heuristic sub-dissector to decode the data payload
 # TRUE or FALSE (case-insensitive)
@@ -1099,6 +911,11 @@ nameres.suppress_smi_errors: TRUE
 # (case-insensitive).
 #alc.lct.ext.193: Decode as FLUTE extension (EXT_CENC)
 
+# How to detect ATSC3 data
+# One of: Do not decode as ATSC3 data, Auto Detect (if encap is ALP), Force to decode as ATSC3 data
+# (case-insensitive).
+#alc.lct.atsc3.mode: Auto Detect (if encap is ALP)
+
 # Whether persistent call leg information is to be kept
 # TRUE or FALSE (case-insensitive)
 #alcap.leg_info: TRUE
@@ -1107,7 +924,7 @@ nameres.suppress_smi_errors: TRUE
 # A decimal number
 #amqp.tls.port: 5671
 
-# Type of AMR encoding of the payload
+# Type of AMR encoding of the payload, if not specified via SDP
 # One of: RFC 3267 octet aligned, RFC 3267 BW-efficient, AMR IF1, AMR IF2
 # (case-insensitive).
 #amr.encoding.version: RFC 3267 octet aligned
@@ -1167,6 +984,14 @@ nameres.suppress_smi_errors: TRUE
 # Try to resolve physical addresses to host names from ARP requests/responses
 # TRUE or FALSE (case-insensitive)
 #arp.register_network_address_binding: TRUE
+
+# Try to decode a packet using an heuristic sub-dissector before using a sub-dissector registered to "decode as"
+# TRUE or FALSE (case-insensitive)
+#asam-cmp.try_heuristic_first: FALSE
+
+# Use the old encoding of 11bit CAN/CAN-FD IDs
+# TRUE or FALSE (case-insensitive)
+#asam-cmp.use_old_canid_11bit_format: FALSE
 
 # Select the CAT001 version
 # One of: Version 1.4 (latest), Version 1.4, Version 1.3, Version 1.2
@@ -1229,7 +1054,7 @@ nameres.suppress_smi_errors: TRUE
 #asterix.i020_version: Version 1.10 (latest)
 
 # Select the CAT021 version
-# One of: Version 2.6 (latest), Version 2.6, Version 2.5, Version 2.4
+# One of: Version 2.6 (latest), Version 2.6, Version 2.5, Version 2.4, Version 2.3, Version 2.2, Version 0.26, Version 0.25, Version 0.24, Version 0.23
 # (case-insensitive).
 #asterix.i021_version: Version 2.6 (latest)
 
@@ -1254,9 +1079,9 @@ nameres.suppress_smi_errors: TRUE
 #asterix.i034_version: Version 1.29 (latest)
 
 # Select the CAT048 version
-# One of: Version 1.30 (latest), Version 1.30, Version 1.29, Version 1.28, Version 1.27
+# One of: Version 1.31 (latest), Version 1.31, Version 1.30, Version 1.29, Version 1.28, Version 1.27
 # (case-insensitive).
-#asterix.i048_version: Version 1.30 (latest)
+#asterix.i048_version: Version 1.31 (latest)
 
 # Select the CAT062 version
 # One of: Version 1.19 (latest), Version 1.19, Version 1.18, Version 1.17
@@ -1269,9 +1094,9 @@ nameres.suppress_smi_errors: TRUE
 #asterix.i063_version: Version 1.6 (latest)
 
 # Select the CAT065 version
-# One of: Version 1.5 (latest), Version 1.5
+# One of: Version 1.6 (latest), Version 1.6, Version 1.5, Version 1.4
 # (case-insensitive).
-#asterix.i065_version: Version 1.5 (latest)
+#asterix.i065_version: Version 1.6 (latest)
 
 # Select the CAT240 version
 # One of: Version 1.3 (latest), Version 1.3
@@ -1536,7 +1361,7 @@ nameres.suppress_smi_errors: TRUE
 # TRUE or FALSE (case-insensitive)
 #camel.persistentsrt: FALSE
 
-# Whether the CAN ID/flags field should be byte-swapped
+# Whether the CAN ID/flags field should be byte-swapped in CAN classic and CAN FD packets
 # TRUE or FALSE (case-insensitive)
 #can.byte_swap: FALSE
 
@@ -1596,6 +1421,10 @@ nameres.suppress_smi_errors: TRUE
 # Whether the Netflow/Ipfix dissector should reassemble messages spanning multiple TCP segments.  To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
 #cflow.desegment: TRUE
+
+# Whether the first two bits of 1 byte TCP flags should be decoded as CWR and ECE or reserved.
+# TRUE or FALSE (case-insensitive)
+#cflow.tcpflags_1byte_cwr: FALSE
 
 # Whether to validate the Frame Check Sequence
 # TRUE or FALSE (case-insensitive)
@@ -1713,6 +1542,10 @@ nameres.suppress_smi_errors: TRUE
 # TRUE or FALSE (case-insensitive)
 #cpfi.arrow_ctl: TRUE
 
+# Show the first inferred well-known bus name (e.g. "com.example.MusicPlayer1") instead of the unique connection name (e.g. ":1.18"). Might be confusing if a connection owns more than one well-known name.
+# TRUE or FALSE (case-insensitive)
+#dbus.resolve_names: TRUE
+
 # Show not dissected data on new Packet Bytes pane
 # TRUE or FALSE (case-insensitive)
 #data.datapref.newpane: FALSE
@@ -1807,9 +1640,19 @@ data.show_as_text: TRUE
 # (case-insensitive).
 #dhcp.uuid.endian: Little Endian
 
+# Endianness applied to seconds elapsed field
+# One of: Autodetect, Little Endian, Big Endian
+# (case-insensitive).
+#dhcp.secs.endian: Autodetect
+
 # Whether the DHCP failover dissector should reassemble messages spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
 #dhcpfo.desegment: TRUE
+
+# Enables the dissector to show Microsoft-formatted option fields correctly
+# One of: Autodetect Microsoft Windows DHCP server, Dissect using IETF draft 12 specifications, Dissect using Microsoft-style formatting
+# (case-insensitive).
+#dhcpfo.microsoft_compatibility: Autodetect Microsoft Windows DHCP server
 
 # Whether Option 18 is dissected as CableLab or RFC 3315
 # TRUE or FALSE (case-insensitive)
@@ -1846,6 +1689,14 @@ data.show_as_text: TRUE
 # Decode all DICOM tags in the last PDV. This will ensure the proper reassembly. De-select, to troubleshoot PDU length issues, or to understand PDV fragmentation. When not set, the decoding may fail and the exports may become corrupt.
 # TRUE or FALSE (case-insensitive)
 #dicom.pdv_reassemble: TRUE
+
+# Show data as text in the Packet Details pane
+# TRUE or FALSE (case-insensitive)
+#discard.show_as_text: FALSE
+
+# Whether or not MD5 hashes should be generated and shown for each payload.
+# TRUE or FALSE (case-insensitive)
+#discard.md5_hash: FALSE
 
 # Whether the DISTCC dissector should reassemble messages spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
@@ -1931,6 +1782,25 @@ data.show_as_text: TRUE
 # Whether the DRDA dissector should reassemble messages spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
 #drda.desegment: TRUE
+
+# Default SQL Application Manager Level in the absence of EXSATRD command. (Currently the only difference in handling is between values < 7 and >= 7.)
+# A decimal number
+#drda.sqlam: 7
+
+# Data Type Definition to use in the absence of ACCRDB and ACCRDBRM commands.
+# One of: System/390 SQL type definition, AS/400 SQL type definition, Intel 80x86 SQL type definition, General ASCII Big Endian SQL type definition, DEC VAX SQL type definition
+# (case-insensitive).
+#drda.typdefnam: Intel 80x86 SQL type definition
+
+# Single-byte encoding to use for FD:OCA character data in the absence of CCSIDSBC TYPDEFOVR parameter.
+# One of: US-ASCII, ISO-8859-1, ISO-8859-2, ISO-8859-3, ISO-8859-4, ISO-8859-5, ISO-8859-6, ISO-8859-7, ISO-8859-8, ISO-8859-9, ISO-8859-10, EUC-KR, UTF-8, ISO-8859-13, ISO-8859-14, ISO-8859-15, ISO-8859-16, GBK, GB18030, ISO-10646-UCS-2, ISO-10646-UCS-4, UTF-16BE, UTF-16LE, UTF-16, IBM437, GB2312, IBM037, IBM500, IBM855, IBM866, TIS-620
+# (case-insensitive).
+#drda.ccsidsbc: UTF-8
+
+# Mixed-byte encoding to use for FD:OCA character data in the absence of CCSIDMBC TYPDEFOVR parameter.
+# One of: US-ASCII, ISO-8859-1, ISO-8859-2, ISO-8859-3, ISO-8859-4, ISO-8859-5, ISO-8859-6, ISO-8859-7, ISO-8859-8, ISO-8859-9, ISO-8859-10, EUC-KR, UTF-8, ISO-8859-13, ISO-8859-14, ISO-8859-15, ISO-8859-16, GBK, GB18030, ISO-10646-UCS-2, ISO-10646-UCS-4, UTF-16BE, UTF-16LE, UTF-16, IBM437, GB2312, IBM037, IBM500, IBM855, IBM866, TIS-620
+# (case-insensitive).
+#drda.ccsidmbc: UTF-8
 
 # Whether the DSI dissector should reassemble messages spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
@@ -2158,6 +2028,10 @@ data.show_as_text: TRUE
 # TRUE or FALSE (case-insensitive)
 #exec.info_show_command: FALSE
 
+# The dissector to use for User Data PDU
+# A string
+#exported_pdu.user_data_pdu: data
+
 # In a few cases a short ethernet frame will be padded with non-zerobytes.  If this happens, an f5ethtrailer will not be found.Enabling this will step through each byte of the ethernet trailerto try and find the start of an f5ethtrailer
 # TRUE or FALSE (case-insensitive)
 #f5ethtrailer.pref_walk_trailer: FALSE
@@ -2288,10 +2162,6 @@ data.show_as_text: TRUE
 # TRUE or FALSE (case-insensitive)
 #frame.generate_md5_hash: FALSE
 
-# Whether or not an Epoch time entry should be generated for each frame.
-# TRUE or FALSE (case-insensitive)
-#frame.generate_epoch_time: TRUE
-
 # Whether or not the number of bits in the frame should be shown.
 # TRUE or FALSE (case-insensitive)
 #frame.generate_bits_field: TRUE
@@ -2299,6 +2169,10 @@ data.show_as_text: TRUE
 # Whether or not 'packet size limited during capture' message in shown in Info column.
 # TRUE or FALSE (case-insensitive)
 #frame.disable_packet_size_limited_in_summary: FALSE
+
+# Show at most this many lines of a multi-line packet comment (applied separately to each comment)
+# A decimal number
+#frame.max_comment_lines: 30
 
 # Maximum file size (in megabytes) for export objects  (use 0 for unlimited).
 # A decimal number
@@ -2427,6 +2301,10 @@ data.show_as_text: TRUE
 # Dissect GSM-A User-To-User information
 # TRUE or FALSE (case-insensitive)
 #gsm-r-uus1.dissect_gsm_a_u2u: TRUE
+
+# No description
+# TRUE or FALSE (case-insensitive)
+#gsm_rlp.decode_as_l2rcop: TRUE
 
 # TCAP Subsystem numbers used for GSM MAP
 # A string denoting an positive integer range (e.g., "1-20,30-40")
@@ -2559,6 +2437,14 @@ data.show_as_text: TRUE
 # Try to decode the payload using an heuristic sub-dissector
 # TRUE or FALSE (case-insensitive)
 #hpfeeds.try_heuristic: TRUE
+
+# Should the HSFZ dissector check if a HSFZ header for validity (length and control word)?
+# TRUE or FALSE (case-insensitive)
+#hsfz.header_check_heuristic: FALSE
+
+# Should the shortened UDS in the HSFZ be dissected?
+# TRUE or FALSE (case-insensitive)
+#hsfz.show_uds_in_ack: FALSE
 
 # Whether the HTTP dissector should reassemble headers of a request spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
@@ -2723,6 +2609,14 @@ http.desegment_headers: FALSE
 # A string denoting an positive integer range (e.g., "1-20,30-40")
 #ipdr.sessions.samis_type_1: 
 
+# Whether iPerf3 was run with --udp-counters-64bit flag set
+# TRUE or FALSE (case-insensitive)
+#iperf3.udp_sequence_64bit: FALSE
+
+# Attempt to detect when a packets sequence number does not match the previous ones +1
+# TRUE or FALSE (case-insensitive)
+#iperf3.detect_udp_errors: TRUE
+
 # Dissect IPMB commands
 # TRUE or FALSE (case-insensitive)
 #ipmi.dissect_bus_commands: FALSE
@@ -2773,10 +2667,6 @@ http.desegment_headers: FALSE
 # TRUE or FALSE (case-insensitive)
 #ip.tso_support: TRUE
 
-# Whether to look up IP addresses in each MaxMind database we have loaded
-# TRUE or FALSE (case-insensitive)
-#ip.use_geoip: TRUE
-
 # Whether to interpret the originally reserved flag as security flag
 # TRUE or FALSE (case-insensitive)
 #ip.security_flag: FALSE
@@ -2793,9 +2683,9 @@ http.desegment_headers: FALSE
 # TRUE or FALSE (case-insensitive)
 #ipv6.summary_in_tree: TRUE
 
-# Whether to look up IPv6 addresses in each MaxMind database we have loaded
+# Whether to show extended information about IPv6 addresses
 # TRUE or FALSE (case-insensitive)
-#ipv6.use_geoip: TRUE
+#ipv6.address_detail: FALSE
 
 # Check that all RPL Source Routed packets conform to RFC 6554 and do not visit a node more than once
 # TRUE or FALSE (case-insensitive)
@@ -3048,6 +2938,14 @@ http.desegment_headers: FALSE
 # TRUE or FALSE (case-insensitive)
 #json.compact_form: FALSE
 
+# Display JSON like in vscode editor
+# TRUE or FALSE (case-insensitive)
+#json.raw_form: FALSE
+
+# Determine whether to hide the tree of original form or root item of compact or raw form based on the enabled status of compact_form and raw_form preferences.
+# TRUE or FALSE (case-insensitive)
+#json.auto_hide: FALSE
+
 # Leading bytes will be ignored until first '[' or '{' is found.
 # TRUE or FALSE (case-insensitive)
 #json.ignore_leading_bytes: FALSE
@@ -3055,6 +2953,10 @@ http.desegment_headers: FALSE
 # Hide extended path based filtering
 # TRUE or FALSE (case-insensitive)
 #json.hide_extended_path_based_filtering: FALSE
+
+# Replace character escapes with the escaped literal value
+# TRUE or FALSE (case-insensitive)
+#json.unescape_strings: FALSE
 
 # Enable to have correctly typed MIME media dissected as JXTA Messages.
 # TRUE or FALSE (case-insensitive)
@@ -3217,6 +3119,14 @@ http.desegment_headers: FALSE
 # TRUE or FALSE (case-insensitive)
 #lte_rrc.nas_in_root_tree: FALSE
 
+# Whether the dissector should analyze the sequencing and cross-references of the segments within each session.
+# TRUE or FALSE (case-insensitive)
+#ltp.analyze_sequence: TRUE
+
+# Whether the dissector should combine block segments together into a full block.
+# TRUE or FALSE (case-insensitive)
+#ltp.reassemble_block: TRUE
+
 # Swap frame control bytes (needed for some APs).
 # TRUE or FALSE (case-insensitive)
 #lwapp.swap_fc: FALSE
@@ -3361,6 +3271,28 @@ http.desegment_headers: FALSE
 # Whether the memcache dissector should reassemble PDUs spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
 #memcache.desegment_pdus: TRUE
+
+# If the trailer is found using heuristics, then the trailer may or may not be added and the FCS may or may not be captured. One of the heuristics is the timestamp seconds value being within specified bounds. Set ranges of valid seconds to adjust this particular heuristic.
+# A string denoting an positive integer range (e.g., "1-20,30-40")
+#metamako.secs_bounds: 3600-4294967295
+
+# If the trailer is found using heuristics, then the trailer may or may not be added and the FCS may or may not be captured. One of the heuristics is the number of days difference between the capture (PCAP) timestamp and the Ethernet trailer timestamp. Set an upper bound (in days) to adjust this particular heuristic.
+# A decimal number
+#metamako.days_diff_limit: 30
+
+# This option can override the trailer detection heuristic so that the Metamako trailer is either never or always present.
+# One of: According to heuristic, Never, Always
+# (case-insensitive).
+#metamako.trailer_present: According to heuristic
+
+# Some Ethernet adapters and drivers include the FCS at the end of a packet, others do not.  Some capture file formats and protocols do not indicate whether or not the FCS is included. The Metamako dissector attempts to guess whether a captured packet has an FCS, but it cannot always guess correctly. This option can override that heuristic and assume that the FCS is either never or always present.
+# One of: According to heuristic, Never, Always
+# (case-insensitive).
+#metamako.fcs: According to heuristic
+
+# Whether to validate the Frame Check Sequence
+# TRUE or FALSE (case-insensitive)
+#metamako.check_fcs: TRUE
 
 # Set the UDP port for gateway messages (if other than the default of 2427)
 # A decimal number
@@ -3802,7 +3734,7 @@ http.desegment_headers: FALSE
 # TRUE or FALSE (case-insensitive)
 #nr-rrc.nas_in_root_tree: FALSE
 
-# NT Password (used to decrypt payloads)
+# Cleartext NT Password (used to decrypt payloads, supports only ASCII passwords)
 # A string
 #ntlmssp.nt_password: 
 
@@ -3822,23 +3754,23 @@ http.desegment_headers: FALSE
 # TRUE or FALSE (case-insensitive)
 #nvme-tcp.check_ddgst: FALSE
 
-# The bit width of DU Port ID, sum of a,b,c&d must be 16
+# The bit width of DU Port ID - sum of a,b,c&d (eAxC) must be 16
 # A decimal number
 #oran_fh_cus.oran.du_port_id_bits: 2
 
-# The bit width of BandSector ID, sum of a,b,c&d must be 16
+# The bit width of BandSector ID - sum of a,b,c&d (eAxC) must be 16
 # A decimal number
 #oran_fh_cus.oran.bandsector_id_bits: 6
 
-# The bit width of CC ID, sum of a,b,c&d must be 16
+# The bit width of CC ID - sum of a,b,c&d (eAxC) must be 16
 # A decimal number
 #oran_fh_cus.oran.cc_id_bits: 4
 
-# The bit width of RU Port ID, sum of a,b,c&d must be 16
+# The bit width of RU Port ID - sum of a,b,c&d (eAxC) must be 16
 # A decimal number
 #oran_fh_cus.oran.ru_port_id_bits: 4
 
-# The bit width of a sample in the Uplink
+# The bit width of a sample in the Uplink (if no udcompHdr)
 # A decimal number
 #oran_fh_cus.oran.iq_bitwidth_up: 14
 
@@ -3847,11 +3779,11 @@ http.desegment_headers: FALSE
 # (case-insensitive).
 #oran_fh_cus.oran.ud_comp_up: Block Floating Point Compression
 
-# The udCompHdr field in U-Plane messages may or may not be present, depending on the configuration of the O-RU. This preference instructs the dissector to expect this field to be present in uplink messages.
+# The udCompHdr field in U-Plane messages may or may not be present, depending on the configuration of the O-RU. This preference instructs the dissector to expect this field to be present in uplink messages
 # TRUE or FALSE (case-insensitive)
 #oran_fh_cus.oran.ud_comp_hdr_up: FALSE
 
-# The bit width of a sample in the Downlink
+# The bit width of a sample in the Downlink (if no udcompHdr)
 # A decimal number
 #oran_fh_cus.oran.iq_bitwidth_down: 14
 
@@ -3860,7 +3792,7 @@ http.desegment_headers: FALSE
 # (case-insensitive).
 #oran_fh_cus.oran.ud_comp_down: Block Floating Point Compression
 
-# The udCompHdr field in U-Plane messages may or may not be present, depending on the configuration of the O-RU. This preference instructs the dissector to expect this field to be present in downlink messages.
+# The udCompHdr field in U-Plane messages may or may not be present, depending on the configuration of the O-RU. This preference instructs the dissector to expect this field to be present in downlink messages
 # TRUE or FALSE (case-insensitive)
 #oran_fh_cus.oran.ud_comp_hdr_down: FALSE
 
@@ -3876,7 +3808,7 @@ http.desegment_headers: FALSE
 # A decimal number
 #oran_fh_cus.oran.num_bf_antennas: 32
 
-# When enabled, for U-Plane frames show each I and Q value in PRB.
+# When enabled, for U-Plane frames show each I and Q value in PRB
 # TRUE or FALSE (case-insensitive)
 #oran_fh_cus.oran.show_iq_samples: TRUE
 
@@ -4192,7 +4124,7 @@ http.desegment_headers: FALSE
 # TRUE or FALSE (case-insensitive)
 #pn_io.pnio_ps_selection: TRUE
 
-# Select your Networkpath to your GSD-Files.
+# Place GSD files in this folder.
 # A path to a directory
 #pn_io.pnio_ps_networkpath: 
 
@@ -4275,7 +4207,7 @@ http.desegment_headers: FALSE
 
 # Make the PTP dissector analyze PTP messages. Accurate Capture Timestamps required!
 # TRUE or FALSE (case-insensitive)
-#ptp.analyze_ptp_messages: FALSE
+#ptp.analyze_ptp_messages: TRUE
 
 # Properly translates vendor specific opcodes
 # One of: Unknown vendor, Eastman Kodak, Canon, Nikon, Casio EX-F1, Microsoft / MTP, Olympus E series
@@ -4560,9 +4492,13 @@ http.desegment_headers: FALSE
 #rtp.desegment_rtp_streams: TRUE
 
 # If an RTP version 0 packet is encountered, it can be treated as an invalid or ZRTP packet, a CLASSIC-STUN packet, or a T.38 packet
-# One of: Invalid or ZRTP packets, STUN packets, CLASSIC-STUN packets, T.38 packets, SPRT packets
+# One of: Invalid or ZRTP packets, STUN packets, CLASSIC-STUN packets, T.38 packets, SPRT packets, Multiplexed as in RFC 7983
 # (case-insensitive).
-#rtp.version0_type: Invalid or ZRTP packets
+#rtp.version0_type: Multiplexed as in RFC 7983
+
+# De-encapsulate the primary encoding from the RAD header for RTP analysis and playback
+# TRUE or FALSE (case-insensitive)
+#rtp.rfc2198_deencapsulate: TRUE
 
 # Specifies that RTP/RTCP/T.38/MSRP/etc streams are decoded based upon port numbers found in RTPproxy answers
 # TRUE or FALSE (case-insensitive)
@@ -4604,6 +4540,10 @@ http.desegment_headers: FALSE
 # TRUE or FALSE (case-insensitive)
 #rtps.enable_rtps_reassembly: FALSE
 
+# Detects the RTPS packets with invalid checksums (Only CRC-32C and MD5 supported)
+# TRUE or FALSE (case-insensitive)
+#rtps.enable_rtps_checksum_check: FALSE
+
 # Whether the RTSP dissector should reassemble headers of a request spanning multiple TCP segments.  To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
 #rtsp.desegment_headers: TRUE
@@ -4629,9 +4569,73 @@ http.desegment_headers: FALSE
 # TRUE or FALSE (case-insensitive)
 #sametime.reassemble: TRUE
 
+# Port numbers used for SAP Diag Protocol (default 3200)
+# A string denoting an positive integer range (e.g., "1-20,30-40")
+#sapdiag.tcp_ports: 3200
+
+# Whether the SAP Diag Protocol dissector should call the SAP RFC dissector for embedded RFC calls
+# TRUE or FALSE (case-insensitive)
+#sapdiag.rfc_dissection: TRUE
+
+# Whether the SAP Diag Protocol dissector should call the SAP SNC dissector for SNC frames
+# TRUE or FALSE (case-insensitive)
+#sapdiag.snc_dissection: TRUE
+
+# Whether the SAP Diag Protocol dissector should highlight unknown SAP Diag item (might be noise and generate a lot of expert warnings)
+# TRUE or FALSE (case-insensitive)
+#sapdiag.highlight_unknown_items: TRUE
+
+# Port numbers used for SAP HANA SQL Command Network Protocol (default 30013,30015)
+# A string denoting an positive integer range (e.g., "1-20,30-40")
+#saphdb.tcp_ports: 30013,30015
+
+# Whether the SAP HANA HDB Protocol dissector should highlight unknown items (might be noise and generate a lot of expert warnings)
+# TRUE or FALSE (case-insensitive)
+#saphdb.highlight_unknown_items: TRUE
+
+# Port numbers used for SAP IGS Protocol (default 40000)
+# A string denoting an positive integer range (e.g., "1-20,30-40")
+#sapigs.tcp_ports: 40000
+
+# Wether the SAP IGS Protocol dissector should highlight unknown IGS messages
+# TRUE or FALSE (case-insensitive)
+#sapigs.highlight_unknow_items: TRUE
+
+# Port numbers used for SAP MS Protocol (default 3600,3900)
+# A string denoting an positive integer range (e.g., "1-20,30-40")
+#sapms.tcp_ports: 3600,3900
+
+# Whether the SAP MS Protocol dissector should highlight unknown MS messages (might be noise and generate a lot of expert warnings)
+# TRUE or FALSE (case-insensitive)
+#sapms.highlight_unknown_items: TRUE
+
+# Port numbers used for SAP NI Protocol (default 3200,40000)
+# A string denoting an positive integer range (e.g., "1-20,30-40")
+#sapni.tcp_ports: 3200,40000
+
+# Whether the SAP NI Protocol dissector should reassemble messages spanning multiple TCP segments.
+# TRUE or FALSE (case-insensitive)
+#sapni.desegment: TRUE
+
+# Port numbers used for SAP Router Protocol (default 3298-3299)
+# A string denoting an positive integer range (e.g., "1-20,30-40")
+#saprouter.tcp_ports: 3298-3299
+
+# Whether the SAP Router Protocol dissector should call the SAP SNC dissector for SNC frames
+# TRUE or FALSE (case-insensitive)
+#saprouter.snc_dissection: TRUE
+
 # Whether the SASP dissector should reassemble messages spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
 #sasp.desegment_sasp_messages: TRUE
+
+# Whether or not the RTP header is present in the SAToP header.
+# TRUE or FALSE (case-insensitive)
+#pwsatopcw.rtp_header: FALSE
+
+# Heuristically determine if an RTP header is present in the SAToP header.
+# TRUE or FALSE (case-insensitive)
+#pwsatopcw.rtp_header_heuristic: TRUE
 
 # The source point code (usually MSC) (to determine whether message is uplink or downlink)
 # A hexadecimal number
@@ -4801,6 +4805,11 @@ http.desegment_headers: FALSE
 # TRUE or FALSE (case-insensitive)
 #sip.display_raw_text_without_crlf: FALSE
 
+# Display sip body of raw text by using this charset. The default is UTF-8.
+# One of: US-ASCII, ISO-8859-1, ISO-8859-2, ISO-8859-3, ISO-8859-4, ISO-8859-5, ISO-8859-6, ISO-8859-7, ISO-8859-8, ISO-8859-9, ISO-8859-10, EUC-KR, UTF-8, ISO-8859-13, ISO-8859-14, ISO-8859-15, ISO-8859-16, GBK, GB18030, ISO-10646-UCS-2, ISO-10646-UCS-4, UTF-16BE, UTF-16LE, UTF-16, IBM437, GB2312, IBM037, IBM500, IBM855, IBM866, TIS-620
+# (case-insensitive).
+#sip.raw_text_body_default_encoding: UTF-8
+
 # If enabled, only SIP/2.0 traffic will be dissected as SIP. Disable it to allow SIP traffic with a different version to be dissected as SIP.
 # TRUE or FALSE (case-insensitive)
 #sip.strict_sip_version: TRUE
@@ -4929,11 +4938,11 @@ http.desegment_headers: FALSE
 
 # The name of the snort binary file to run
 # A path to a file
-#snort.binary: /usr/sbin/snort
+#snort.binary: C:\Snort\bin\snort.exe
 
 # The name of the file containing the snort IDS configuration.  Typically snort.conf
 # A path to a file
-#snort.config: /etc/snort/snort.conf
+#snort.config: C:\Snort\etc\snort.conf
 
 # Whether or not information about the rule set and detected alerts should be shown in the tree of every snort PDU tree
 # TRUE or FALSE (case-insensitive)
@@ -4966,6 +4975,10 @@ http.desegment_headers: FALSE
 # Should the SOME/IP Dissector use the payload dissector?
 # TRUE or FALSE (case-insensitive)
 #someip.payload_dissector_activated: TRUE
+
+# Should the SOME/IP Dissector automatically detect DTLS and hand off to it?
+# TRUE or FALSE (case-insensitive)
+#someip.detect_dtls_and_hand_off: FALSE
 
 # Should the SOME/IP Dissector use the payload dissector with the experimental WTLV encoding for unconfigured messages?
 # TRUE or FALSE (case-insensitive)
@@ -5030,7 +5043,7 @@ http.desegment_headers: FALSE
 #ssh.desegment_buffers: TRUE
 
 # The path to the file which contains a list of key exchange secrets in the following format:
-# "<hex-encoded-cookie> <hex-encoded-key>" (without quotes or leading spaces).
+# "<hex-encoded-cookie> <PRIVATE_KEY|SHARED_SECRET> <hex-encoded-key>" (without quotes or leading spaces).
 # 
 # A path to a file
 #ssh.keylog_file: 
@@ -5162,6 +5175,11 @@ http.desegment_headers: FALSE
 # TRUE or FALSE (case-insensitive)
 #tcp.relative_sequence_numbers: TRUE
 
+# Override the default analysis with this value for the selected packet
+# One of: 0 (none), 1 (Out-of-Order), 2 (Retransmission), 3 (Fast Retransmission), 4 (Spurious Retransmission)
+# (case-insensitive).
+#tcp.default_override_analysis: 0 (none)
+
 # Make the TCP dissector use this scaling factor for streams where the signalled scaling factor is not visible in the capture
 # One of: Not known, 0 (no scaling), 1 (multiply by 2), 2 (multiply by 4), 3 (multiply by 8), 4 (multiply by 16), 5 (multiply by 32), 6 (multiply by 64), 7 (multiply by 128), 8 (multiply by 256), 9 (multiply by 512), 10 (multiply by 1024), 11 (multiply by 2048), 12 (multiply by 4096), 13 (multiply by 8192), 14 (multiply by 16384)
 # (case-insensitive).
@@ -5264,6 +5282,18 @@ http.desegment_headers: FALSE
 # Treat the analog samples as signed integers and decode them accordingly.
 # TRUE or FALSE (case-insensitive)
 #tecmp.analog_samples_sint: TRUE
+
+# Move Ethernet into the TECMP Tree to be more space efficient.
+# TRUE or FALSE (case-insensitive)
+#tecmp.move_ethernet_in_tecmp_tree: FALSE
+
+# Detect ASAM CMP messages and the ASAM CMP dissector handle them.
+# TRUE or FALSE (case-insensitive)
+#tecmp.detect_asam_cmp: TRUE
+
+# Ignore Device IDs 0xff00-0xffff (user-defined range) for ASAM CMP Detection
+# TRUE or FALSE (case-insensitive)
+#tecmp.detect_asam_cmp_ignore_user_defined: TRUE
 
 # Whether the captured data include carrier number
 # TRUE or FALSE (case-insensitive)
@@ -5483,6 +5513,14 @@ tls.keylog_file: C:\sslkeylog.log
 # A string
 #uaudp.system_ip: 
 
+# Select preferred TCP port
+# A decimal number
+#uci.tcp.port: 7000
+
+# Enable desegmentation of UCI packets over TCP
+# TRUE or FALSE (case-insensitive)
+#uci.tcp.desegment: TRUE
+
 # Whether the UCP dissector should reassemble messages spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
 #ucp.desegment_ucp_messages: TRUE
@@ -5530,6 +5568,15 @@ tls.keylog_file: C:\sslkeylog.log
 # No description
 # TRUE or FALSE (case-insensitive)
 #udpcp.attempt_xml_decode: TRUE
+
+# Dissect Service Identifiers smaller 0x10 with OBD II Dissector?
+# TRUE or FALSE (case-insensitive)
+#uds.dissect_small_sids_with_obd_ii: TRUE
+
+# Decide how the certificate bytes are decoded
+# One of: BER Certificate w/o implicit tag, BER Certificate w implicit tag, BER Certificates w/o implicit tag, BER Certificates w implicit tag, Do not parse
+# (case-insensitive).
+#uds.cert_decode_strategy: Do not parse
 
 # Whether the ULP dissector should reassemble messages spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
@@ -5675,6 +5722,11 @@ tls.keylog_file: C:\sslkeylog.log
 # TRUE or FALSE (case-insensitive)
 #xml.heuristic_unicode: FALSE
 
+# Use this charset if the 'encoding' attribute of XML declaration is missing.Unsupported encoding will be replaced by the default UTF-8.
+# One of: US-ASCII, ISO-8859-1, ISO-8859-2, ISO-8859-3, ISO-8859-4, ISO-8859-5, ISO-8859-6, ISO-8859-7, ISO-8859-8, ISO-8859-9, ISO-8859-10, EUC-KR, UTF-8, ISO-8859-13, ISO-8859-14, ISO-8859-15, ISO-8859-16, GBK, GB18030, ISO-10646-UCS-2, ISO-10646-UCS-4, UTF-16BE, UTF-16LE, UTF-16, IBM437, GB2312, IBM037, IBM500, IBM855, IBM866, TIS-620
+# (case-insensitive).
+#xml.default_encoding: UTF-8
+
 # Whether the XMPP dissector should reassemble messages. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings
 # TRUE or FALSE (case-insensitive)
 #xmpp.desegment: TRUE
@@ -5708,6 +5760,14 @@ tls.keylog_file: C:\sslkeylog.log
 # Whether the Z39.50 dissector should reassemble TDS buffers spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
 #z3950.desegment_buffers: TRUE
+
+# Whether the Zabbix protocol dissector should reassemble messages spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
+# TRUE or FALSE (case-insensitive)
+#zabbix.desegment: TRUE
+
+# Wether or not dissector shall ignore keys, which were provided after current packet during decryption
+# TRUE or FALSE (case-insensitive)
+#zbd.ignore_late_keys: TRUE
 
 # Specifies the security level to use in the
 # decryption process. This value is ignored
